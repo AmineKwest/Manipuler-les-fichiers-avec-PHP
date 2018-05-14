@@ -17,6 +17,9 @@ strong{
     font-size: 1.1em;
 }
 
+ul li {
+list-style:none;}
+
 .navbar-brand{
     height: auto;
 }
