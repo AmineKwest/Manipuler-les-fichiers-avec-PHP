@@ -19,7 +19,7 @@
 </nav>
 <div class="container">
     <div class="panel panel-default">
-      <p> <?php include('../php_files_handling_ressources/filsList.php');?> </p>
+      <p> <?php include(__DIR__.'/../filsList.php');?> </p>
         <div class="panel-heading">
             <h3 class="panel-title text-uppercase">UFO's Activities report</h3>
         </div>

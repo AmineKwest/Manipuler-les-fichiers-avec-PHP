@@ -10,8 +10,16 @@ if (isset($_POST["contenu"])) {
 
 if(isset($_POST['delete'])) {
     unlink($_GET["f"]);
-    var_dump($_GET);
     header('location: index.php');
+}
+
+if (isset($_GET["d"])) {
+  ?>
+  <form action="" method="post" role="form">
+  <input type="hidden"  name="image" value='.$_GET["d"].' >
+  <input type="submit" class="btn btn-danger" name="deleteDirectory" value="Delete Directory">
+  </form>
+  <?php
 }
 
 if (isset($_GET["f"])) {
@@ -51,6 +59,27 @@ elseif (isset($_GET["f"]) && $extension = "jpg") {
 <?php
 }
 }
+
+if(isset($_POST['deleteDirectory'])) {
+$dir = $_GET["d"];
+if (is_dir($dir)) {
+    $objects = scandir($dir);
+    foreach ($objects as $object) {
+        if ($object != "." && $object != "..") {
+            rmdir($dir . "/" . $object);
+            unlink($dir . "/" . $object);
+            header('location: index.php');
+        }
+    }
+    reset($objects);
+    rmdir($dir);
+    header('location: index.php');
+} else {
+    unlink($dir);
+    header('location: index.php');
+}
+}
+
 ?>
 
 <?php include('inc/foot.php'); ?>
